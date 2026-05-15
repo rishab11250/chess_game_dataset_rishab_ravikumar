@@ -20,4 +20,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Server is healthy' });
 });
 
+// Error Handling Middleware
+app.use(errorHandler);
+
 module.exports = app;
