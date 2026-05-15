@@ -1,12 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const morgan = require('morgan');
 
+const logger = require('./middlewares/logger.middleware');
+const rateLimiter = require('./middlewares/rateLimiter.middleware');
+const errorHandler = require('./middlewares/error.middleware');
+const morgan = require('morgan');
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use(logger);
+app.use(rateLimiter);
 app.use(morgan('dev'));
 
 // Basic Route
